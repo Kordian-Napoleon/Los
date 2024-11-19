@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+html {
+	font-size: 22px;
+}
+		
+body {
+	font-family: Inter;
+	background-color: #B5C7D3;
+	color: #000000;
+}
+/* <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900*/
+
+.inter-mine {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
