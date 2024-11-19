@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
         addName();
     });
 
+   // Usuwanie imienia po kliknięciu na liście
+    nameList.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+            event.target.remove(); // Usunięcie elementu listy
+        }
+    });
+    
     // Naciśnięcie klawisza Enter w polu tekstowym
     nameInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
