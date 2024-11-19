@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Dodawanie imienia do listy
-    addNameButton.addEventListener('click', (event) => {
-        event.stopPropagation(); // Zatrzymuje propagację zdarzenia kliknięcia
+    // Funkcja do dodawania imienia
+    const addName = () => {
         const name = nameInput.value.trim();
         if (name) {
             const nameList = document.getElementById('name-list');
@@ -21,12 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
             nameList.appendChild(listItem);
             nameInput.value = ''; // Czyszczenie pola tekstowego
         }
+    };
+
+    // Kliknięcie przycisku "Dodaj imię"
+    addNameButton.addEventListener('click', (event) => {
+        event.stopPropagation(); // Zatrzymuje propagację zdarzenia kliknięcia
+        addName();
     });
 
     // Naciśnięcie klawisza Enter w polu tekstowym
     nameInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
-            event.preventDefault(); // Pomija przypadkowe dotknięcia
+            event.preventDefault(); // Zapobiega domyślnemu zachowaniu (np. przesłaniu formularza)
             addName();
         }
     });
