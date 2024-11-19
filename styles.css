@@ -2,11 +2,11 @@
 /* CSS Document */
 	
 body {
-	display: flex;
+	//* display: flex;
    	justify-content: center;
    	align-items: center;
   	min-height: 100vh;
-  	margin: 0;
+  	margin: 0; *//
 	font-family: Inter;
 	background-color: #FFF8DE;
 	color: #AA5486;
