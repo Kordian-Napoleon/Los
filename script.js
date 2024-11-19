@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = document.querySelector('.card');
     const nameInput = document.getElementById('name-input');
     const addNameButton = document.getElementById('add-name');
+    const nameList = document.getElementById('name-list');
 
     // Obracanie karty po kliknięciu (z wykluczeniem pola tekstowego i przycisku)
     card.addEventListener('click', (event) => {
@@ -14,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const addName = () => {
         const name = nameInput.value.trim();
         if (name) {
-            const nameList = document.getElementById('name-list');
             const listItem = document.createElement('li');
             listItem.textContent = name;
+            listItem.classList.add('list-item'); // Opcjonalnie: klasa do stylizacji
             nameList.appendChild(listItem);
             nameInput.value = ''; // Czyszczenie pola tekstowego
         }
@@ -28,13 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         addName();
     });
 
-   // Usuwanie imienia po kliknięciu na liście
-    nameList.addEventListener('click', (event) => {
-        if (event.target.tagName === 'LI') {
-            event.target.remove(); // Usunięcie elementu listy
-        }
-    });
-    
     // Naciśnięcie klawisza Enter w polu tekstowym
     nameInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -42,7 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
             addName();
         }
     });
-    
+
+    // Usuwanie imienia z listy po kliknięciu
+    nameList.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+            nameList.removeChild(event.target);
+        }
+    });
+
     // Losowanie imienia i wyświetlanie na karcie
     const drawNameButton = document.getElementById('draw-name');
     drawNameButton.addEventListener('click', () => {
