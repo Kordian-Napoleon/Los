@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const card = document.querySelector('.card');
-    const nameList = document.getElementById('name-list');
     const nameInput = document.getElementById('name-input');
-    const addNameButton = document.getElementById('add-name');
-    const drawNameButton = document.getElementById('draw-name');
-    let names = [];
 
-    // Obracanie karty po kliknięciu
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+    // Obracanie karty po kliknięciu (z wykluczeniem pola tekstowego)
+    card.addEventListener('click', (event) => {
+        if (event.target !== nameInput) {
+            card.classList.toggle('flipped');
+        }
     });
 
     // Dodawanie imienia do listy
