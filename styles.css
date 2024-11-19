@@ -30,6 +30,7 @@ body {
     perspective: 1000px;
     margin-bottom: 20px;
     position: relative;
+    left: 30px;
 }
 
 .card .front, .card .back {
