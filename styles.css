@@ -50,6 +50,7 @@ body {
 
 .card .front {
     transform: rotateY(0deg);
+    left: 16px;
 }
 
 .card .back {
