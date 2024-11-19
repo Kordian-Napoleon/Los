@@ -26,7 +26,7 @@ body {
 
 .card {
     width: 300px;
-    height: 200px;
+    height: 400px;
     perspective: 1000px;
     margin-bottom: 20px;
     position: relative;
@@ -65,8 +65,8 @@ body {
 }
 
 button {
-    width: 300px;
-    padding: 10px;
+    width: 90%;
+    padding: 12px;
     font-size: 16px;
     color: white;
     background-color: #AA5486;
@@ -81,10 +81,14 @@ button:hover {
 }
 
 input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 116px;
+}
+
+.card .back ul#name-list li {
+    margin-bottom: 10px; 
 }
