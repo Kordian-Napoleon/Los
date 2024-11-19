@@ -94,3 +94,9 @@ input {
 .card .back ul#name-list li {
     margin-bottom: 10px; 
 }
+
+footer {
+    text-align: right;
+    font-size: 5px;
+    color: #eee;
+}
