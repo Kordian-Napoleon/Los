@@ -5,11 +5,11 @@
 }
 
 body {
-	//* display: flex;
+	 display: flex;
    	justify-content: center;
    	align-items: center;
   	min-height: 100vh;
-  	margin: 0; *//
+  	margin: 0;
 	font-family: Inter, Arial, sans-serif;
 	background-color: #FFF8DE;
 	color: #AA5486;
@@ -108,7 +108,8 @@ input {
 }
 
 footer.p {
-    text-align: right;
+    position: absolute;
+    right: 0px;
     font-size: 4px;
     color: #eee;
 }
