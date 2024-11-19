@@ -39,10 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Usuwanie imienia z listy po kliknięciu
     nameList.addEventListener('click', (event) => {
-        if (event.target.tagName === 'LI') {
-            nameList.removeChild(event.target);
-        }
-    });
+    if (event.target.tagName === 'LI') {
+        event.stopPropagation(); // Zatrzymuje propagację zdarzenia kliknięcia do karty
+        nameList.removeChild(event.target);
+    }
+});
+
 
     // Losowanie imienia i wyświetlanie na karcie
     const drawNameButton = document.getElementById('draw-name');
