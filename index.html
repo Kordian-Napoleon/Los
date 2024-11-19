@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="jam jest Oliwier">
 	<title>Losowanie</title>
 	<link rel="icon" href="Spotkanka.jpeg" type="image/x-icon">
@@ -14,9 +15,20 @@
 	<!-- najważniejsze to wiedzieć jak zrobić komentarz -->
 <body>
 	<h1>Losowanie na spotkanku</h1>
-	<div class="card">
-        *imię*
-    	</div>
-	<p>Jaki skład?</p>
+	<div class="container">
+        <div class="card">
+            <div class="front">
+                Kliknij, aby dodać imiona
+            </div>
+            <div class="back">
+                <ul id="name-list"></ul>
+                <input type="text" id="name-input" placeholder="Wpisz imię">
+                <button id="add-name">Dodaj imię</button>
+            </div>
+        </div>
+        <button id="draw-name">Wylosuj imię</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
