@@ -10,7 +10,7 @@ body {
    	align-items: center;
   	min-height: 100vh;
   	margin: 0; *//
-	font-family: Inter;
+	font-family: Inter, Arial, sans-serif;
 	background-color: #FFF8DE;
 	color: #AA5486;
 	font-size: 22px;
