@@ -95,6 +95,16 @@ input {
     margin-bottom: 10px; 
 }
 
+.list-item {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.list-item:hover {
+    background-color: #f8d7da; /* Jasnoczerwony */
+    color: #721c24; /* Ciemniejszy tekst */
+}
+
 footer.p {
     text-align: right;
     font-size: 1px;
