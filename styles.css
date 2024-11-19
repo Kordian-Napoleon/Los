@@ -1,18 +1,17 @@
 @charset "utf-8";
 /* CSS Document */
-
-html {
-	font-size: 44px;
-}
-		
+	
 body {
+	display: flex;
+   	justify-content: center;
+   	align-items: center;
+  	min-height: 100vh;
+  	margin: 0;
 	font-family: Inter;
 	background-color: #FFF8DE;
 	color: #AA5486;
 	font-size: 44px;
 }
-/* <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 100 to 900*/
 
 .inter-mine {
   font-family: "Inter", sans-serif;
@@ -21,12 +20,71 @@ body {
   font-style: normal;
 }
 
+.container {
+    text-align: center;
+}
+
 .card {
-    background-color: #ffffff; 
-    padding: 20px 40px; 
-    border-radius: 20px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    text-align: center; 
-    font-size: 44px; 
-    color: #AA5486; 
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.card .front, .card .back {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: transform 0.6s;
+}
+
+.card .front {
+    transform: rotateY(0deg);
+}
+
+.card .back {
+    transform: rotateY(180deg);
+    padding: 20px;
+}
+
+.card.flipped .front {
+    transform: rotateY(-180deg);
+}
+
+.card.flipped .back {
+    transform: rotateY(0deg);
+}
+
+button {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
 }
