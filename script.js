@@ -23,6 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Naciśnięcie klawisza Enter w polu tekstowym
+    nameInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            addName();
+        }
+    });
+    
     // Losowanie imienia i wyświetlanie na karcie
     const drawNameButton = document.getElementById('draw-name');
     drawNameButton.addEventListener('click', () => {
