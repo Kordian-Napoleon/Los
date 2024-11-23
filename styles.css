@@ -18,11 +18,8 @@ body {
 	font-size: 22px;
 }
 
-.inter-mine {
-  font-family: 'Inter', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+h1{
+	margin: 10px;
 }
 
 .container {
