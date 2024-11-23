@@ -93,6 +93,7 @@ button {
     cursor: pointer;
     margin-top: 5px;
     font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: rgb(120 58 96 / 66%);
 }
 
 #draw-name{
