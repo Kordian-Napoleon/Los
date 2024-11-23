@@ -2,9 +2,10 @@
 @font-face {
     font-family: 'Inter';
     src: url('Inter-VariableFont_opsz-wght.ttf') format('truetype');
-    font-weight: 100 900;
+    font-weight: 100 900; /* Zakres wag dla fontów zmiennych */
     font-style: normal;
 }
+
 body {
 	/* display: flex;
    	justify-content: center;
@@ -26,11 +27,19 @@ body {
 
 .container {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+    /* margin: 20px;  Margines wokół kontenera */
 }
 
 .card {
-    width: 320px;
-    height: 440px;
+    width: 90%; /* Karta zajmuje 90% szerokości ekranu */
+    max-width: 320px; /* Maksymalna szerokość karty */
+    height: auto; /* Wysokość dopasowuje się do proporcji */
+    aspect-ratio: 2 / 3; /* Proporcje 2:3 dla wysokości i szerokości */
     perspective: 1000px;
     margin-bottom: 20px;
     position: relative;
@@ -50,16 +59,16 @@ body {
     align-items: center;
     flex-direction: column;
     transition: transform 0.6s;
+    padding: 10px; /* Dodano odstępy wewnętrzne */
 }
 
-.card .front {
+ .card .front {
     transform: rotateY(0deg);
 }
 
 .card .back {
     transform: rotateY(180deg);
-    padding: 10px;
-}
+} 
 
 .card.flipped .front {
     transform: rotateY(-180deg);
@@ -67,7 +76,7 @@ body {
 
 .card.flipped .back {
     transform: rotateY(0deg);
-}
+} 
 
 button {
     width: 90%;
@@ -79,6 +88,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    font-family: 'Inter', sans-serif;
 }
 
 button:hover {
@@ -92,10 +102,21 @@ input {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    font-family: 'Inter', sans-serif;
 }
 
-.card .back ul#name-list li {
-    margin-bottom: 10px; 
+/* Dostosowanie listy imion */
+.card .back ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0; /* Odstęp między listą a innymi elementami */
+}
+
+.card .back li {
+    margin-bottom: 8px; /* Odstęp między imionami */
+    word-wrap: break-word; /* Zapobiega wychodzeniu długich imion poza kartę */
+    text-align: left;
+    width: 100%; /* Dopasowanie do szerokości rodzica */
 }
 
 .list-item {
@@ -110,7 +131,7 @@ input {
 
 footer {
     position: absolute;
-    right: 0px;
+    right: 8px;
     font-size: 12px;
     color: #AA5486;
 }
