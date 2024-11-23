@@ -10,14 +10,14 @@ body {
    	align-items: center;
   	min-height: 100vh;
   	margin: 0; */
-	font-family: Inter, Arial, sans-serif;
+	font-family: 'Inter', sans-serif;
 	background-color: #FFF8DE;
 	color: #AA5486;
 	font-size: 22px;
 }
 
 .inter-mine {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -107,9 +107,9 @@ input {
     color: #721c24; /* Ciemniejszy tekst */
 }
 
-footer.p {
+footer {
     position: absolute;
     right: 0px;
-    font-size: 4px;
-    color: #eee;
+    font-size: 12px;
+    color: #AA5486;
 }
