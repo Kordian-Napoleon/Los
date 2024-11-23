@@ -1,9 +1,10 @@
 @charset "utf-8";
 @font-face {
-    font-family: 'Inter', sans-serif;
-    src: url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap') format('woff2');
+    font-family: 'Inter';
+    src: url('Inter-VariableFont_opsz-wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
 }
-
 body {
 	/* display: flex;
    	justify-content: center;
