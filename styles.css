@@ -119,6 +119,11 @@ color: hsl(325.12deg 33.86% 49.8% / 66%);
 opacity: 1; /* Firefox */
 }
 
+input:focus {
+    border: 2px solid #AA5486;
+    outline: none; 
+}
+
 /* Dostosowanie listy imion */
 .card .back ul {
     list-style: none;
