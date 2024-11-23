@@ -100,10 +100,6 @@ button {
 	margin-top: 20px;
 }
 
-button:hover {
-    background-color: #783A60;
-}
-
 input {
     width: 80%;
     padding: 10px;
