@@ -19,8 +19,12 @@ body {
 }
 
 h1{
-	margin: 16px;
+	margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
+
 
 .container {
     text-align: center;
@@ -28,8 +32,8 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* min-height: 100vh; */
-    /* margin: 20px;  Margines wokół kontenera */
+    // min-height: 100vh;
+     margin: 20px;  Margines wokół kontenera
 }
 
 
@@ -41,7 +45,7 @@ h1{
     perspective: 1000px;
     margin-bottom: 20px;
     position: relative;
-	left: -20px;
+	left: -10px;
     border: none;
 }
 
@@ -58,7 +62,7 @@ h1{
     align-items: center;
     flex-direction: column;
     transition: transform 0.6s;
-    padding: 20px; /* Dodano odstępy wewnętrzne */
+    padding: 10px; /* Dodano odstępy wewnętrzne */
 }
 
 
@@ -87,12 +91,12 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 5px;
     font-family: 'Inter', sans-serif;
 }
 
 #draw-name{
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 button:hover {
@@ -103,10 +107,16 @@ input {
     width: 80%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ddd;
+    border: 1px solid hsl(325.12deg 33.86% 49.8% / 66%);
     border-radius: 5px;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
+    color: #AA5486;
+}
+
+::placeholder {
+color: hsl(325.12deg 33.86% 49.8% / 66%);
+opacity: 1; /* Firefox */
 }
 
 /* Dostosowanie listy imion */
