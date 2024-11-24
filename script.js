@@ -5,12 +5,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameList = document.getElementById('name-list');
     const drawNameButton = document.getElementById('draw-name');
     const spotkankoElement = document.getElementById("spotkanko");
+    const allowRepeatsCheckbox = document.getElementById('allow-repeats-checkbox'); // Przełącznik powtarzania
 
-    // Obracanie karty po kliknięciu (z wykluczeniem pola tekstowego i przycisku)
+    let allNames = []; // Pełna lista imion
+    let remainingNames = []; // Lista imion do losowania (bez powtórzeń)
+
+    // Domyślnie wyłączone powtarzanie
+    allowRepeatsCheckbox.checked = false;
+
+    // Obracanie karty po kliknięciu (z wykluczeniem pola tekstowego, przycisku i checkboxa)
     card.addEventListener('click', (event) => {
-        if (event.target !== nameInput && event.target !== addNameButton) {
+        if (
+            event.target !== nameInput &&
+            event.target !== addNameButton &&
+            event.target !== allowRepeatsCheckbox && // Wykluczenie checkboxa
+            event.target.parentElement !== allowRepeatsCheckbox.parentElement // Wykluczenie kontenera checkboxa
+        ) {
             card.classList.toggle('flipped');
         }
+    });
+
+    // Obsługa checkboxa - zmiana stanu powtarzania
+    allowRepeatsCheckbox.addEventListener('click', (event) => {
+        event.stopPropagation(); // Zatrzymanie propagacji, by karta się nie obracała
+        const allowRepeats = event.target.checked;
+        console.log(`Powtarzanie: ${allowRepeats ? "włączone" : "wyłączone"}`);
     });
 
     // Funkcja do dodawania imienia
@@ -19,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         listItem.textContent = name;
         listItem.classList.add('list-item'); // Opcjonalnie: klasa do stylizacji
         nameList.appendChild(listItem);
+        allNames.push(name); // Dodanie do pełnej listy
+        remainingNames.push(name); // Dodanie do listy losowania
     };
 
     // Obsługa przycisku "Dodaj imię"
@@ -56,20 +77,39 @@ document.addEventListener('DOMContentLoaded', () => {
     nameList.addEventListener('click', (event) => {
         if (event.target.tagName === 'LI') {
             event.stopPropagation(); // Zatrzymuje propagację zdarzenia kliknięcia do karty
+            const name = event.target.textContent;
+            allNames = allNames.filter(n => n !== name); // Usuń z pełnej listy
+            remainingNames = remainingNames.filter(n => n !== name); // Usuń z listy bez powtórzeń
             nameList.removeChild(event.target);
         }
     });
 
-    // Losowanie imienia i wyświetlanie na karcie
+    // Losowanie imienia i wyświetlanie na przodzie karty
     drawNameButton.addEventListener('click', () => {
-        const nameListItems = document.querySelectorAll('#name-list li');
-        if (nameListItems.length > 0) {
-            const randomIndex = Math.floor(Math.random() * nameListItems.length);
-            const randomName = nameListItems[randomIndex].textContent;
-            card.classList.remove('flipped'); // Obrót na przód
-            card.querySelector('.front').textContent = randomName;
-        } else {
+        if (allNames.length === 0) {
             alert('Dodaj przynajmniej jedno imię przed losowaniem!');
+            return;
         }
+
+        const allowRepeats = allowRepeatsCheckbox.checked; // Czy powtarzanie jest włączone?
+
+        let selectedName;
+        if (allowRepeats) {
+            // Losowanie z pełnej listy
+            const randomIndex = Math.floor(Math.random() * allNames.length);
+            selectedName = allNames[randomIndex];
+        } else {
+            // Losowanie z listy bez powtórzeń
+            if (remainingNames.length === 0) {
+                // Automatyczny reset listy bez powtórzeń
+                remainingNames = [...allNames];
+            }
+            const randomIndex = Math.floor(Math.random() * remainingNames.length);
+            selectedName = remainingNames.splice(randomIndex, 1)[0]; // Usuwa wylosowane imię z listy
+        }
+
+        // Wyświetlenie wylosowanego imienia na przodzie karty
+        card.classList.remove('flipped'); // Obrót na przód
+        card.querySelector('.front').textContent = selectedName;
     });
 });
