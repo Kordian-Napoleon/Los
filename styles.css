@@ -115,10 +115,10 @@ h1{
     transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Zmiana koloru na hover */
+/* Zmiana koloru na hover 
 #allow-repeats-container:hover .minimal-checkmark {
     background-color: #ddd;
-}
+} */
 
 /* Zmiana koloru po zaznaczeniu */
 #allow-repeats-container input[type="checkbox"]:checked ~ .minimal-checkmark {
