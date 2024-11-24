@@ -33,7 +33,7 @@ h1{
     justify-content: center;
     align-items: center;
     /* min-height: 100vh;*/
-     margin: 20px;
+     margin: 20px; 
 }
 
 
@@ -81,6 +81,69 @@ h1{
 .card.flipped .back {
     transform: rotateY(0deg);
 } 
+
+/* Stylowanie kontenera z powtarzaniem */
+#allow-repeats-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center; /* Wyrównanie tekstu i checkboxa w jednej linii */
+    gap: 10px; /* Odstęp między tekstem a checkboxem */
+    font-size: 16px;
+    color: #AA5486;
+    cursor: pointer;
+    user-select: none; /* Zapobiega zaznaczaniu tekstu */
+}
+
+/* Ukrywanie domyślnego checkboxa */
+#allow-repeats-container input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Minimalistyczny okrągły checkbox */
+#allow-repeats-container .minimal-checkmark {
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 2px solid #AA5486;
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Zmiana koloru na hover */
+#allow-repeats-container:hover .minimal-checkmark {
+    background-color: #ddd;
+}
+
+/* Zmiana koloru po zaznaczeniu */
+#allow-repeats-container input[type="checkbox"]:checked ~ .minimal-checkmark {
+    background-color: #AA5486;
+    transform: scale(1.1); /* Lekka animacja powiększenia */
+}
+
+/* Kropka wewnątrz zaznaczonego checkboxa */
+#allow-repeats-container .minimal-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Pokazanie kropki po zaznaczeniu */
+#allow-repeats-container input[type="checkbox"]:checked ~ .minimal-checkmark:after {
+    display: block;
+}
 
 button {
     width: 90%;
