@@ -94,6 +94,7 @@ h1{
     color: #AA5486;
     cursor: pointer;
     user-select: none; /* Zapobiega zaznaczaniu tekstu */
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Ukrywanie domyślnego checkboxa */
@@ -101,6 +102,7 @@ h1{
     position: absolute;
     opacity: 0;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Minimalistyczny okrągły checkbox */
@@ -113,17 +115,20 @@ h1{
     display: inline-block;
     position: relative;
     transition: background-color 0.3s, transform 0.3s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Zmiana koloru na hover 
 #allow-repeats-container:hover .minimal-checkmark {
     background-color: #ddd;
+    -webkit-tap-highlight-color: transparent;
 } */
 
 /* Zmiana koloru po zaznaczeniu */
 #allow-repeats-container input[type="checkbox"]:checked ~ .minimal-checkmark {
     background-color: #AA5486;
     transform: scale(1.1); /* Lekka animacja powiększenia */
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Kropka wewnątrz zaznaczonego checkboxa */
@@ -138,11 +143,13 @@ h1{
     background: white;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Pokazanie kropki po zaznaczeniu */
 #allow-repeats-container input[type="checkbox"]:checked ~ .minimal-checkmark:after {
     display: block;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button {
