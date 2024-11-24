@@ -19,10 +19,15 @@
                 Kliknij, aby dodać imiona
             </div>
             <div class="back">
-                <ul id="name-list"></ul>
-                <input type="text" id="name-input" placeholder="Wpisz imię">
-                <button id="add-name">Dodaj imię</button>
-            </div>
+				<label id="allow-repeats-container">
+					Powtarzać
+					<input type="checkbox" id="allow-repeats-checkbox">
+					<span class="minimal-checkmark"></span>
+				</label>				
+				<ul id="name-list"></ul>
+				<input type="text" id="name-input" placeholder="Wpisz imię">
+				<button id="add-name">Dodaj imię</button>
+			</div>			
         </div>
         <button id="draw-name">Wylosuj imię</button>
 	</div>
