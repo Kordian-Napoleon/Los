@@ -1,5 +1,12 @@
 @charset "utf-8";
-/* CSS Document */
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
 
 html {
 	font-size: 44px;
