@@ -206,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gifConteiner.classList.add('active');
             };
 
+            if(blackCounter == 5){alert("AAAAAAAA!!!")};
             createGif();
         }
     };
