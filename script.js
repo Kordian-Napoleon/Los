@@ -30,14 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obracanie karty po kliknięciu (z wykluczeniem pola tekstowego, przycisku i checkboxa)
     card.addEventListener('click', (event) => {
         if (
-            event.target !== nameInput &&
-            event.target !== addNameButton &&
-            event.target !== allowRepeatsCheckbox && // Wykluczenie checkboxa
-            event.target.parentElement !== allowRepeatsCheckbox.parentElement // Wykluczenie kontenera checkboxa
+            event.target === nameInput || // Kliknięcie w input
+            event.target === addNameButton || // Kliknięcie w przycisk
+            event.target === allowRepeatsCheckbox || // Kliknięcie w checkbox
+            event.target.parentElement === allowRepeatsCheckbox.parentElement ||
+            event.target.closest('img') // Kliknięcie w obraz
         ) {
-            card.classList.toggle('flipped');
+            return; // Nie obracaj karty
         }
+        card.classList.toggle('flipped'); // Obrót karty
     });
+    
 
     // Obsługa checkboxa - zmiana stanu powtarzania
     allowRepeatsCheckbox.addEventListener('click', (event) => {
@@ -175,30 +178,27 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(video);
             //console.log(2);
         } else if (blackCounter > 4) {
-            let gif = document.getElementById("img");
-            if (!gif) {
+            const createGif = () => {
+                // Stwórz nowy element img dla każdego GIF-a
+                const gif = document.createElement('img');
+                gif.src = 'rage.gif';
+                gif.classList.add('gif'); // Dodajemy klasę, by można było stylizować wiele GIF-ów
+                gifConteiner.appendChild(gif);
+            
+                // Dodaj listener do każdej instancji GIF-a
+                gif.addEventListener('click', () => {
+                    gif.remove(); // Usuń konkretną instancję GIF-a po kliknięciu
+                    // Opcjonalnie: sprawdź, czy kontener jest pusty i usuń klasę aktywną
+                    if (gifConteiner.children.length === 0) {
+                        gifConteiner.classList.remove('active');
+                    }
+                });
+            
+                // Pokaż kontener, jeśli jeszcze nie jest aktywny
                 gifConteiner.classList.add('active');
-                img = document.createElement('img'); // Użyj tej samej zmiennej
-                img.id = "gif"; // Nadaj id elementowi
-                gifConteiner.appendChild(img); // Dodaj do kontenera
-            }
-            if(blackCounter == 5){
-                alert("AAAAAA!!!");
-            }
-            img.src = 'rage.gif';
-            gifConteiner.appendChild(img);
-            //console.log(3);
-
-            // Dodanie event listenera na kliknięcie w obraz
-            img.addEventListener('click', () => {
-                event.stopPropagation();
-                gifConteiner.classList.remove('active'); // Usuwamy klasę active, co ukrywa GIF
-                img.style.display = 'none'; // Ukrywamy obraz po kliknięciu
-            });
-
-            // Pokazywanie GIF-a i umożliwienie kliknięcia
-            gifConteiner.classList.add('active'); // Dodajemy klasę, by włączyć interakcję
-            img.style.display = 'block'; // Upewniamy się, że GIF jest widoczny
+            };
+            
+            createGif();
         }
     };
 
