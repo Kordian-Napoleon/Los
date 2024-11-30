@@ -250,6 +250,34 @@ video {
     border-radius: 5px; /* Opcjonalnie: zaokrąglone rogi */
 }
 
+#gif-container {
+    position: fixed; /* Pozycja na stałe względem okna przeglądarki */
+    top: 15%;        /* Środek pionowy */
+    left: 50%;       /* Środek poziomy */
+    transform: translate(-50%, -50%); /* Wycentrowanie */
+    z-index: 9999;   /* Najwyższa warstwa */
+    /*background: rgba(0, 0, 0, 0.8); /* Ciemne tło */
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    pointer-events: none;
+}
+
+img {
+    display: block;
+    width: 90vw; /* 90% szerokości widoku */
+    /*max-width: 90%; /* Ograniczenie maksymalnej szerokości */
+    aspect-ratio: auto; /* Proporcja 16:9 */
+    border-radius: 5px; /* Opcjonalnie: zaokrąglone rogi */
+    padding: 2px;
+    background-color: #000;
+    pointer-events: none; /* Domyślnie blokujemy interakcję z GIF-em */
+}
+
+#gif-container.active img {
+    pointer-events: auto; /* Pozwalamy na kliknięcie tylko wtedy, gdy GIF jest widoczny */
+}
+
 footer {
     position: absolute;
     right: 8px;
