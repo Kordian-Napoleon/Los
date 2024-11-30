@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allowRepeatsCheckbox = document.getElementById('allow-repeats-checkbox'); // Przełącznik powtarzania
     const footer = document.querySelector('footer p'); // Tekst stopki
     const container = document.getElementById("video-container");
-    const video = document.createElement('video');
+    const gifConteiner = document.getElementById("gif-container");
 
     let allNames = []; // Pełna lista imion
     let remainingNames = []; // Lista imion do losowania (bez powtórzeń)
@@ -175,7 +175,30 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(video);
             //console.log(2);
         } else if (blackCounter > 4) {
-            console.log(3);
+            let gif = document.getElementById("img");
+            if (!gif) {
+                gifConteiner.classList.add('active');
+                img = document.createElement('img'); // Użyj tej samej zmiennej
+                img.id = "gif"; // Nadaj id elementowi
+                gifConteiner.appendChild(img); // Dodaj do kontenera
+            }
+            if(blackCounter == 5){
+                alert("AAAAAA!!!");
+            }
+            img.src = 'rage.gif';
+            gifConteiner.appendChild(img);
+            //console.log(3);
+
+            // Dodanie event listenera na kliknięcie w obraz
+            img.addEventListener('click', () => {
+                event.stopPropagation();
+                gifConteiner.classList.remove('active'); // Usuwamy klasę active, co ukrywa GIF
+                img.style.display = 'none'; // Ukrywamy obraz po kliknięciu
+            });
+
+            // Pokazywanie GIF-a i umożliwienie kliknięcia
+            gifConteiner.classList.add('active'); // Dodajemy klasę, by włączyć interakcję
+            img.style.display = 'block'; // Upewniamy się, że GIF jest widoczny
         }
     };
 
