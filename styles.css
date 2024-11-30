@@ -231,7 +231,7 @@ input:focus {
 
 #video-container {
     position: fixed; /* Pozycja na stałe względem okna przeglądarki */
-    top: 50%;        /* Środek pionowy */
+    top: 45%;        /* Środek pionowy */
     left: 50%;       /* Środek poziomy */
     transform: translate(-50%, -50%); /* Wycentrowanie */
     z-index: 9999;   /* Najwyższa warstwa */
