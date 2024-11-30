@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameList = document.getElementById('name-list');
     const drawNameButton = document.getElementById('draw-name');
     const spotkankoElement = document.getElementById("spotkanko");
-    const allowRepeatsCheckbox = document.getElementById('allow-repeats-checkbox'); // Przełącznik powtarzania
+    const minimalCheckmark = document.querySelector('#allow-repeats-container .minimal-checkmark');
+    const checkbox = document.getElementById('allow-repeats-checkbox');
+    const label = document.getElementById('allow-repeats-container');
     const footer = document.querySelector('footer p'); // Tekst stopki
     const container = document.getElementById("video-container");
     const gifConteiner = document.getElementById("gif-container");
@@ -16,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let blackCounter = 0;
 
     // Domyślnie wyłączone powtarzanie
-    allowRepeatsCheckbox.checked = false;
+    checkbox.checked = false;
     let reakcjaOn = true;
 
     const On = "~made by Oliwier Parobczy";
@@ -32,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (
             event.target === nameInput || // Kliknięcie w input
             event.target === addNameButton || // Kliknięcie w przycisk
-            event.target === allowRepeatsCheckbox || // Kliknięcie w checkbox
-            event.target.parentElement === allowRepeatsCheckbox.parentElement ||
+            event.target === checkbox || // Kliknięcie w checkbox
+            event.target.parentElement === checkbox.parentElement ||
             event.target.closest('img') // Kliknięcie w obraz
         ) {
             return; // Nie obracaj karty
@@ -42,11 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
 
-    // Obsługa checkboxa - zmiana stanu powtarzania
-    allowRepeatsCheckbox.addEventListener('click', (event) => {
-        event.stopPropagation(); // Zatrzymanie propagacji, by karta się nie obracała
-        const allowRepeats = event.target.checked;
-        //console.log(`Powtarzanie: ${allowRepeats ? "włączone" : "wyłączone"}`);
+    // Zmiana stanu checkboxa po kliknięciu na minimal-checkmark
+    minimalCheckmark.addEventListener('click', (event) => {
+        event.stopPropagation(); // Zatrzymanie propagacji zdarzenia kliknięcia
+        checkbox.checked = !checkbox.checked; // Zmiana stanu checkboxa
+        // console.log(`Powtarzanie: ${checkbox.checked ? "włączone" : "wyłączone"}`);
+    });
+    // Zablokowanie kliknięcia w tekst przed zmianą stanu checkboxa
+    label.addEventListener('click', (event) => {
+        if (event.target !== minimalCheckmark) {
+            event.preventDefault(); // Zapobiega domyślnemu działaniu (zmiana stanu checkboxa)
+        }
     });
 
     // Funkcja do dodawania imienia
@@ -117,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const allowRepeats = allowRepeatsCheckbox.checked; // Czy powtarzanie jest włączone?
+        const allowRepeats = checkbox.checked; // Czy powtarzanie jest włączone?
 
         let selectedName;
         if (allowRepeats) {
@@ -197,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pokaż kontener, jeśli jeszcze nie jest aktywny
                 gifConteiner.classList.add('active');
             };
-            
+
             createGif();
         }
     };
