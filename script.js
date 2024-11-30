@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const spotkankoElement = document.getElementById("spotkanko");
     const allowRepeatsCheckbox = document.getElementById('allow-repeats-checkbox'); // Przełącznik powtarzania
     const footer = document.querySelector('footer p'); // Tekst stopki
+    const container = document.getElementById("video-container");
+    const video = document.createElement('video');
 
     let allNames = []; // Pełna lista imion
     let remainingNames = []; // Lista imion do losowania (bez powtórzeń)
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     allowRepeatsCheckbox.addEventListener('click', (event) => {
         event.stopPropagation(); // Zatrzymanie propagacji, by karta się nie obracała
         const allowRepeats = event.target.checked;
-        console.log(`Powtarzanie: ${allowRepeats ? "włączone" : "wyłączone"}`);
+        //console.log(`Powtarzanie: ${allowRepeats ? "włączone" : "wyłączone"}`);
     });
 
     // Funkcja do dodawania imienia
@@ -131,14 +133,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Wyświetlenie wylosowanego imienia na przodzie karty
         card.classList.remove('flipped'); // Obrót na przód
-        card.querySelector('.front').textContent = selectedName;
+        if(reakcjaOn){
+            if(black.includes(selectedName)){
+                alert("Ojoj! Wylosowałeś zbanowane imię! \nSkontaktuj się z Oliwierem w celu pomocy")
+                return;
+            }
+        } else {  
+        }card.querySelector('.front').textContent = selectedName;
     });
 
     const reakcja = () => {
         if (blackCounter === 1) {
-            console.log(1);
+            //console.log(1);
+            alert("ACCESS DENIED");
         } else if (blackCounter > 1 && blackCounter <= 4) {
-            console.log(2);
+            let video = document.getElementById("video");
+            if (!video) {
+                video = document.createElement('video'); // Użyj tej samej zmiennej
+                video.id = "video"; // Nadaj id elementowi
+                container.appendChild(video); // Dodaj do kontenera
+            }
+
+
+            // Ustaw atrybuty wideo
+            video.src = 'access_denied.mp4'; // Ścieżka do pliku wideo
+            video.controls = false;       // Dodaj kontrolki (play, pause itp.)
+            //video.width = 1920;           // Szerokość wideo
+            //video.height = 1080;          // Wysokość wideo
+            video.autoplay = true;
+            video.id = "video";
+            // Opcjonalnie: tekst alternatywny dla przeglądarek bez wsparcia wideo
+            // Obsłuż zakończenie odtwarzania
+            video.addEventListener('ended', () => {
+                //container.style.display = 'none'; // Ukryj kontener po zakończeniu
+                container.innerHTML = ''; // Wyczyść zawartość kontenera
+            });
+
+            // Usuń stare wideo, jeśli istnieje
+            //container.innerHTML = '';
+            // Dodaj element <video> do kontenera
+            container.appendChild(video);
+            //console.log(2);
         } else if (blackCounter > 4) {
             console.log(3);
         }
@@ -153,4 +188,4 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("footer").innerHTML = On;
         }
     });
-});
+})
