@@ -1,9 +1,19 @@
-@CHARSET "UTF-8";
+@charset "utf-8";
 @font-face {
     font-family: 'Inter';
     src: url('Inter-VariableFont_opsz-wght.ttf') format('truetype');
     font-weight: 100 900; /* Zakres wag dla fontów zmiennych */
     font-style: normal;
+}
+
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+
+@supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif;
+    }
 }
 
 body {
@@ -81,6 +91,10 @@ h1{
 .card.flipped .back {
     transform: rotateY(0deg);
 } 
+
+.card.flipped + #video-container {
+    display: none;
+}
 
 /* Stylowanie kontenera z powtarzaniem */
 #allow-repeats-container {
@@ -213,6 +227,27 @@ input:focus {
 .list-item:hover {
     background-color: #f8d7da; /* Jasnoczerwony */
     color: #721c24; /* Ciemniejszy tekst */
+}
+
+#video-container {
+    position: fixed; /* Pozycja na stałe względem okna przeglądarki */
+    top: 50%;        /* Środek pionowy */
+    left: 50%;       /* Środek poziomy */
+    transform: translate(-50%, -50%); /* Wycentrowanie */
+    z-index: 9999;   /* Najwyższa warstwa */
+    /*background: rgba(0, 0, 0, 0.8); /* Ciemne tło */
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    pointer-events: none;
+}
+
+video {
+    display: block;
+    width: 90vw; /* 90% szerokości widoku */
+    /*max-width: 90%; /* Ograniczenie maksymalnej szerokości */
+    aspect-ratio: auto; /* Proporcja 16:9 */
+    border-radius: 5px; /* Opcjonalnie: zaokrąglone rogi */
 }
 
 footer {
