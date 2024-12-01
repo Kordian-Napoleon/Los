@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let allNames = []; // Pełna lista imion
     let remainingNames = []; // Lista imion do losowania (bez powtórzeń)
-    let black = ["Wojtek", "Wojciech", "Jerved", "Kosarz", "Wojteczek", "Wojtunio"];
+    let black = ["Wojtek", "Wojciech", "Jerved", "Kosarz", "Wojteczek", "Wojtunio", "kulka", "mocy", "gruby"];
     let blackCounter = 0;
 
     // Domyślnie wyłączone powtarzanie
