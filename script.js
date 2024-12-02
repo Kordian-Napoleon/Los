@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let allNames = []; // Pełna lista imion
     let remainingNames = []; // Lista imion do losowania (bez powtórzeń)
-    let black = ["Wojtek", "Wojciech", "Jerved", "Kosarz", "Wojteczek", "Wojtunio", "kulka", "mocy", "gruby"];
+    let black = ["Wojtek", "Wojciech", "Klimek" ,"Jerved", "Kosarz", "Wojteczek", "Wojtunio", "kulka", "mocy", "gruby"];
     let blackCounter = 0;
 
     // Domyślnie wyłączone powtarzanie
@@ -143,6 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return false; // Nie znaleziono słowa z listy
     };*/
     
+    const addToBlacklist = (newWords) => {
+        black = [...black, ...newWords]; // Dodaje nowe słowa do istniejącej listy
+    };
+
     const checkInputAndIncrement = (input, blacklist) => {
         // Funkcja normalizująca tekst (usuwa znaki specjalne, zamienia podobne)
         const normalize = (text) => {
@@ -155,13 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 '5': 's',
                 '7': 't',
                 '@': ['a', 'o'], // '@' może być 'a' lub 'o'
-                'l': ['i', 'j'], // 'l' zamieniamy na 'i' lub 'j'
+                //'l': ['i', 'j'], // 'l' zamieniamy na 'i' lub 'j'
                 '!': ['i', 'l', 'j'], // '!' może być 'i', 'l' lub 'j'
                 '$': 's',
                 '^': 'a',
                 '?': 'p',
-                'i': 'j',  // 'i' traktujemy jako 'j'
-                'j': 'i'   // 'j' traktujemy jako 'i'
+                //'i': 'j',  // 'i' traktujemy jako 'j'
+                //'j': 'i'   // 'j' traktujemy jako 'i'
             };
     
             // Funkcja do zamiany znaków
@@ -172,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (replacements[char]) {
                         if (Array.isArray(replacements[char])) {
                             // Jeśli dla znaku są różne opcje (tablica), zwróć wszystkie warianty
-                            return replacements[char];
+                            return replacements[char][0];
                         }
                         return replacements[char]; // Zamień na jedną wartość
                     }
@@ -221,7 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Sprawdzamy obecność słowa w obu kierunkach z uwzględnieniem pomijania tylko niealfanumerycznych znaków
             if (
                 containsWordWithSkippedChars(normalizedInput, normalizedWord) ||
-                containsWordWithSkippedChars(normalizedInput, reversedWord)
+                containsWordWithSkippedChars(normalizedInput, reversedWord) ||
+                normalizedInput.includes(normalizedWord) ||
+                normalizedInput.includes(reversedWord) ||
+                isSimilarWord(normalizedInput, normalizedWord)
             ) {
                 blackCounter++;
                 reakcja();
@@ -371,7 +378,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.classList.remove('flipped'); // Obrót na przód
         if(reakcjaOn){
-            if(black.includes(selectedName)){
+            if(checkInputAndIncrement(selectedName, black)){
+                // blackCounter--;
                 alert("Ojoj! Wylosowałeś zbanowane imię! \nSkontaktuj się z Oliwierem w celu pomocy")
                 return;
             }
